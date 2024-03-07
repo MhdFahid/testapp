@@ -146,7 +146,7 @@ class RegisterScreen extends StatelessWidget {
                     CommonButton(
                         title: 'Save',
                         onTap: () {
-                          postApi.makeAuthenticatedRequest();
+                          postApi.postData();
                           // if (formKey.currentState!.validate()) {
 
                           // }

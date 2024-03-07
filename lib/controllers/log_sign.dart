@@ -28,6 +28,7 @@ class LoginController extends GetxController {
         Map<String, dynamic> data = jsonDecode(response.body);
         String token = data['token'];
         tokenkey = token;
+        print(tokenkey);
 
         Get.showSnackbar(const GetSnackBar(
           message: 'Login successful',
