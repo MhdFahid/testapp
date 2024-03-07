@@ -65,10 +65,45 @@ class PostApi extends GetConnect {
 }
 
 class PostApis extends GetConnect {
-  final String apiUrl = "https://flutter-amr.noviindus.in/api/PatientUpdate";
+  // Future<void> postRequest() async {
+  //   Map<String, dynamic> postData = {
+  //     "name": 'fahid',
+  //     "excecutive": 'fahid',
+  //     "payment": 'card',
+  //     "phone": '3456765',
+  //     "address": 'Nadapuram',
+  //   };
 
-  Future<void> postRequest() async {
-    // Your data to be sent in the request body
+  //   try {
+  //     final response = await http.post(
+  //       Uri.parse(apiUrl),
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': 'Bearer $tokenkey',
+  //       },
+  //       body: jsonEncode(postData),
+  //     );
+
+  //     if (response.statusCode == 200) {
+  //       print("Success: ${response.body}");
+  //     } else {
+  //       print("Error: ${response.statusCode}");
+  //       print("Body: ${response.body}");
+  //     }
+  //   } catch (e) {
+  //     print("Error: $e");
+  //   }
+  // }
+
+  Future<void> makeAuthenticatedRequest() async {
+    final String apiUrl = "https://flutter-amr.noviindus.in/api/PatientUpdate";
+
+    final Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $tokenkey',
+    };
+
     Map<String, dynamic> postData = {
       "name": 'fahid',
       "excecutive": 'fahid',
@@ -77,27 +112,18 @@ class PostApis extends GetConnect {
       "address": 'Nadapuram',
     };
 
-    try {
-      final response = await http.post(
-        Uri.parse(apiUrl),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $tokenkey',
-        },
-        body: jsonEncode(postData),
-      );
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      headers: headers,
+      body: jsonEncode(postData),
+    );
 
-      if (response.statusCode == 200) {
-        print("Success: ${response.body}");
-        // Handle success, update UI, etc.
-      } else {
-        print("Error: ${response.statusCode}");
-        print("Body: ${response.body}");
-        // Handle error, show error message, etc.
-      }
-    } catch (e) {
-      print("Error: $e");
-      // Handle error, show error message, etc.
+    if (response.statusCode == 200) {
+      // Handle successful response
+      print('API response: ${response.body}');
+    } else {
+      // Handle error (e.g., unauthorized, bad request, etc.)
+      print('API error: ${response.statusCode}');
     }
   }
 }
