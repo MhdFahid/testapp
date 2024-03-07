@@ -30,6 +30,7 @@ class CommenTextField extends StatelessWidget {
           height: 60,
           color: Color.fromARGB(255, 238, 238, 238),
           child: TextFormField(
+            controller: controller,
             decoration: InputDecoration(
                 hintText: hintText,
                 border: OutlineInputBorder(

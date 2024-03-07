@@ -17,8 +17,10 @@ class LoginController extends GetxController {
       final response = await http.post(
         Uri.parse(apiUrl),
         body: {
-          'username': 'test_user',
-          'password': '12345678',
+          'username': usernameController.text.trim(),
+          'password': passwordController.text.trim(),
+          // 'username': 'test_user',
+          // 'password': '12345678',
         },
       );
 
@@ -41,6 +43,10 @@ class LoginController extends GetxController {
       }
       isLoading.value = false;
     } catch (e) {
+      Get.showSnackbar(const GetSnackBar(
+        message: 'Invalid username or password',
+        duration: Duration(seconds: 2),
+      ));
       isLoading.value = false;
     }
   }

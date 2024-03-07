@@ -41,7 +41,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   space,
                   CommenTextField(
-                    controller: loginController.usernameController,
+                    controller: loginController.passwordController,
                     title: 'Password',
                     hintText: 'Enter password',
                   ),
